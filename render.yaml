@@ -1,0 +1,27 @@
+# ---- render.yaml ----
+services:
+  - type: web
+    name: odoo-community
+    env: docker
+    plan: free
+    region: oregon  # or any available region
+    buildCommand: ""
+    startCommand: "odoo -i base --without-demo=all"
+    envVars:
+      - key: DB_HOST
+        value: odoo-db
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USER
+        value: odoo
+      - key: DB_PASSWORD
+        value: CHANGE_ME_DB_PASSWORD
+      - key: HOST
+        value: 0.0.0.0
+      - key: PGUSER
+        value: odoo
+    autoDeploy: true
+
+databases:
+  - name: odoo-db
+    plan: free
